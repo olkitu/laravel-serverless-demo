@@ -1,0 +1,31 @@
+version: '2.4'
+services:
+  web:
+    image: bref/fpm-dev-gateway
+    ports:
+    - 8000:80
+    volumes:
+    - .:/var/task
+    depends_on:
+    - php
+    environment:
+      HANDLER: index.php
+  php:
+    image: bref/php-74-fpm-dev
+    volumes:
+    - .:/var/task:ro
+
+  mysql:
+    image: mysql:5.7
+    ports:
+    - 3306:3306
+    volumes:
+    - /var/lib/mysql
+    env_file: .env
+    environment: 
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+    - web
