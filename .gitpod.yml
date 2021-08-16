@@ -7,12 +7,12 @@ tasks:
       mysql -e "CREATE DATABASE IF NOT EXIST laravel;" 
       composer install
       php artisan migrate --force
-  command: |
-    export DB_HOST=localhost
-    export DB_USERNAME=root
-    export DB_PASSWORD=
-    export DB_DATABASE=laravel
-    php artisan serve
+  - command: |
+      export DB_HOST=localhost
+      export DB_USERNAME=root
+      export DB_PASSWORD=
+      export DB_DATABASE=laravel
+      php artisan serve
   
 # Ports to expose on workspace startup
 ports:
