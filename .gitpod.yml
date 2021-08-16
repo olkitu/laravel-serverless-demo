@@ -4,7 +4,7 @@ image: gitpod/workspace-mysql
 # Command to start on workspace startup
 tasks:
   - init: |
-      mysql -e "CREATE DATABASE IF NOT EXIST laravel;" 
+      mysql -e "CREATE DATABASE IF NOT EXISTS laravel;" 
       composer install
       php artisan migrate --force
   - command: |
