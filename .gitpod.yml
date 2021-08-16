@@ -3,16 +3,16 @@ image: gitpod/workspace-mysql
 
 # Command to start on workspace startup
 tasks:
-  - before: |
-      export DB_HOST=localhost
-      export DB_USER=root
-      export DB_PASSWORD=
-      export DB_DATABASE=laravel
   - init: |
       mysql -e "CREATE DATABASE IF NOT EXIST laravel;" 
       composer install
-      php artisan migrate
-  command: php artisan serve
+      php artisan migrate --force
+  command: |
+    export DB_HOST=localhost
+    export DB_USERNAME=root
+    export DB_PASSWORD=
+    export DB_DATABASE=laravel
+    php artisan serve
   
 # Ports to expose on workspace startup
 ports:
