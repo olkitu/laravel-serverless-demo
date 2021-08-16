@@ -12,6 +12,7 @@ tasks:
       mysql -e "CREATE DATABASE IF NOT EXIST laravel;" 
       composer install
       php artisan migrate
+  command: php artisan serve
   
 # Ports to expose on workspace startup
 ports:
