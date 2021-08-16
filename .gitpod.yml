@@ -1,0 +1,20 @@
+# The Docker image to run your workspace in.
+image: gitpod/workspace-mysql
+
+# Command to start on workspace startup
+tasks:
+  - before: |
+      export DB_HOST=localhost
+      export DB_USER=root
+      export DB_PASSWORD=
+      export DB_DATABASE=laravel
+  - init: |
+      mysql -e "CREATE DATABASE IF NOT EXIST laravel;" 
+      composer install
+      php artisan migrate
+  
+# Ports to expose on workspace startup
+ports:
+  - port: 8000
+    onOpen: open-preview
+  
